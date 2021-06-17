@@ -1,99 +1,121 @@
-// Globals
-var prefixes         = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-var $container       = $('.container');
-var $timeline        = $('.timeline');
-var $timelineItem    = $('.timeline-item');
-var $timelineContent = $('.timeline-content');
-var $dropDown        = $('.dropdown');
-var $hasHovered      = true;
-var hideOnExit       = false;
+(function () {
 
-// mouseenter event handler
-$timelineItem.on('mouseenter', function(e) {
+    // VARIABLES
+    const timeline = document.querySelector(".timeline ol"),
+    elH = document.querySelectorAll(".timeline li > div"),
+    arrows = document.querySelectorAll(".timeline .arrows .arrow"),
+    arrowPrev = document.querySelector(".timeline .arrows .arrow__prev"),
+    arrowNext = document.querySelector(".timeline .arrows .arrow__next"),
+    firstItem = document.querySelector(".timeline li:first-child"),
+    lastItem = document.querySelector(".timeline li:last-child"),
+    xScrolling = 280,
+    disabledClass = "disabled";
   
-  var isSelected = $(this).hasClass('selected');
+    // START
+    window.addEventListener("load", init);
   
-  if ( isSelected === false ) {
-  
-    var leftPos = $(this).position().left,
-        left    = leftPos - 88,
-        $that   = $(this);
-
-    $timelineItem.removeClass('selected');
-    $(this).addClass('selected');
-
-    if ( $hasHovered === false ) {
-      // Show Bounce
-
-        // Set Flag
-        $hasHovered = true;
-
-        // Show DD Bounce
-        showBounce(left);
-
-        // Show DD content Bounce
-        showContentBounce($that);
-
-    } else {
-      // Follow
-
-        // Change pos of DD to follow
-        dropDownFollow(left);
-
-        // Hide previous dd content
-        $timelineContent.removeClass('animated fadeIn bounceIn');
-
-        // Show hovered dd content
-        $that.find($timelineContent).addClass('animated fadeIn');
+    function init() {
+      setEqualHeights(elH);
+      animateTl(xScrolling, arrows, timeline);
+      setSwipeFn(timeline, arrowPrev, arrowNext);
+      setKeyboardFn(arrowPrev, arrowNext);
     }
-  }
   
-});
-
-// mouseleave event handler
-$timeline.on('mouseleave', function(e) {
+    // SET EQUAL HEIGHTS
+    function setEqualHeights(el) {
+      let counter = 0;
+      for (let i = 0; i < el.length; i++) {
+        const singleHeight = el[i].offsetHeight;
   
-  if (hideOnExit) {
-   
-    //   Set Flag
-    $hasHovered = false;
-
-    // Hide DD
-    hideDropDown();
-
-    // Hide DD content
-    $timelineContent.removeClass('animated fadeIn');
-    
-  }
+        if (counter < singleHeight) {
+          counter = singleHeight;
+        }
+      }
   
-});
-
-// Animation end event listener
-$dropDown.on(prefixes, function(e) {
+      for (let i = 0; i < el.length; i++) {
+        el[i].style.height = `${counter}px`;
+      }
+    }
   
-  if ( e.originalEvent.animationName === 'fadeOut' ) {
-    $dropDown.removeAttr('style');
-  }
+    // CHECK IF AN ELEMENT IS IN VIEWPORT
+    // http://stackoverflow.com/questions/123999/how-to-tell-if-a-dom-element-is-visible-in-the-current-viewport
+    function isElementInViewport(el) {
+      const rect = el.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth));
   
-});
-
-/**
-* Private functions that do showing/hiding/animating
-*/
-function showContentBounce(that) {
-  $hasBounced = true;
-  that.find('.timeline-content').addClass('animated bounceIn');
-}
-
-function showBounce(pos) {
-  $dropDown.css('left', pos + 'px').removeClass('fadeOut').addClass('animated bounceIn');
-}
-
-function dropDownFollow(pos) {
-  $dropDown.css('left', pos + 'px');
-}
-
-function hideDropDown() {
-  $timelineItem.removeClass('selected');
-  $dropDown.removeClass('bounceIn').addClass('fadeOut');
-}
+    }
+  
+    // SET STATE OF PREV/NEXT ARROWS
+    function setBtnState(el, flag = true) {
+      if (flag) {
+        el.classList.add(disabledClass);
+      } else {
+        if (el.classList.contains(disabledClass)) {
+          el.classList.remove(disabledClass);
+        }
+        el.disabled = false;
+      }
+    }
+  
+    // ANIMATE TIMELINE
+    function animateTl(scrolling, el, tl) {
+      let counter = 0;
+      for (let i = 0; i < el.length; i++) {
+        el[i].addEventListener("click", function () {
+          if (!arrowPrev.disabled) {
+            arrowPrev.disabled = true;
+          }
+          if (!arrowNext.disabled) {
+            arrowNext.disabled = true;
+          }
+          const sign = this.classList.contains("arrow__prev") ? "" : "-";
+          if (counter === 0) {
+            tl.style.transform = `translateX(-${scrolling}px)`;
+          } else {
+            const tlStyle = getComputedStyle(tl);
+            // add more browser prefixes if needed here
+            const tlTransform = tlStyle.getPropertyValue("-webkit-transform") || tlStyle.getPropertyValue("transform");
+            const values = parseInt(tlTransform.split(",")[4]) + parseInt(`${sign}${scrolling}`);
+            tl.style.transform = `translateX(${values}px)`;
+          }
+  
+          setTimeout(() => {
+            isElementInViewport(firstItem) ? setBtnState(arrowPrev) : setBtnState(arrowPrev, false);
+            isElementInViewport(lastItem) ? setBtnState(arrowNext) : setBtnState(arrowNext, false);
+          }, 1100);
+  
+          counter++;
+        });
+      }
+    }
+  
+    // ADD SWIPE SUPPORT FOR TOUCH DEVICES
+    function setSwipeFn(tl, prev, next) {
+      const hammer = new Hammer(tl);
+      hammer.on("swipeleft", () => next.click());
+      hammer.on("swiperight", () => prev.click());
+    }
+  
+    // ADD BASIC KEYBOARD FUNCTIONALITY
+    function setKeyboardFn(prev, next) {
+      document.addEventListener("keydown", e => {
+        if (e.which === 37 || e.which === 39) {
+          const timelineOfTop = timeline.offsetTop;
+          const y = window.pageYOffset;
+          if (timelineOfTop !== y) {
+            window.scrollTo(0, timelineOfTop);
+          }
+          if (e.which === 37) {
+            prev.click();
+          } else if (e.which === 39) {
+            next.click();
+          }
+        }
+      });
+    }
+  
+  })();
