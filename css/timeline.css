@@ -14,8 +14,8 @@
 }
 
 #timeline {
-    font: normal 16px/1.5 "Helvetica Neue", sans-serif;
-    background: #456990;
+    font-family: 'Montserrat', sans-serif;
+    background: #695e91;
     color: #fff;
 }
 
@@ -24,7 +24,7 @@
   –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .section {
-    background: #F45B69;
+    background: #e4cecf;
     padding: 50px 0;
 }
 
@@ -93,11 +93,12 @@
     position: absolute;
     left: calc(100% + 7px);
     width: 280px;
-    padding: 15px;
+    padding: 10px;
     font-size: 1rem;
     white-space: normal;
     color: black;
     background: white;
+
 }
 
 .timeline ol li div::before {

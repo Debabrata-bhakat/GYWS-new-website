@@ -7,7 +7,7 @@
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background: #333;
 }
 
@@ -348,4 +348,8 @@ body {
         opacity: 85%;
 
     }
+
+}
+#westarted{
+    background-color: #f26a36;
 }
