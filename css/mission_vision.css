@@ -1,6 +1,6 @@
 #mission_vision h1 {
     text-decoration-color: black;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 #mission_vision h1,
@@ -11,13 +11,13 @@ h6 {
     justify-content: center;
     text-align: center;
     font-weight: bold;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 #mission_vision p,
 div {
     font-size: 16px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: bold;
 }
 
@@ -278,7 +278,7 @@ div {
 #mission_vision h4,
 #mission_vision h5,
 #mission_vision h6 {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 400;
     margin: 0 0 20px 0;
     padding: 0;
@@ -390,7 +390,7 @@ div {
     margin: 0;
     padding: 0;
     line-height: 1;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     letter-spacing: 3px;
 }
@@ -526,7 +526,7 @@ div {
 }
 
 #intro .btn-get-started {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 500;
     font-size: 18px;
     letter-spacing: 1px;
@@ -673,7 +673,7 @@ div {
     display: block;
     outline: none;
     font-weight: 700;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 #mobile-nav ul li a:hover {
@@ -973,7 +973,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 /*Register Section*/
 #Register .btn-get-started {
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 500;
     font-size: 18px;
     letter-spacing: 1px;
@@ -1467,7 +1467,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     margin: 0 0 20px 0;
     padding: 2px 0 2px 10px;
     line-height: 1;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
     letter-spacing: 3px;
     border-left: 4px solid #18d26e;
@@ -1477,7 +1477,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 0;
-    font-family: "Montserrat", sans-serif;
+    font-family: 'Nunito', sans-serif;
     color: #eee;
 }
 
@@ -1935,10 +1935,11 @@ h2 {
     font-size: 17px;
     font-weight: bold;
 }
+
 .bg-dark {
     background-color: #695e91;
 }
 
-#soc{
+#soc {
     background-color: #000;
 }
