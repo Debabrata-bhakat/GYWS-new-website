@@ -1,12 +1,12 @@
-*,
+/* *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
 
-button {
+#timeline button {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -21,7 +21,7 @@ button {
 
 
 /* .section SECTION
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .section {
     background: #F45B69;
@@ -45,7 +45,7 @@ button {
 
 
 /* TIMELINE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .timeline {
     white-space: nowrap;
@@ -140,7 +140,7 @@ button {
 
 
 /* TIMELINE ARROWS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .timeline .arrows {
     display: flex;
@@ -163,7 +163,7 @@ button {
 
 
 /* GENERAL MEDIA QUERIES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 @media screen and (max-width: 599px) {
 
     .timeline ol,
