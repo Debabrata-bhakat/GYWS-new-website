@@ -6,10 +6,10 @@
     box-sizing: border-box;
 }
 
-body {
-    font-family: 'Open Sans', sans-serif;
+/* body {
+    font-family: 'Montserrat', sans-serif;
     background: #333;
-}
+} */
 
 #pr_card .container {
     max-width: 900px;
@@ -348,4 +348,9 @@ body {
         opacity: 85%;
 
     }
+
+}
+
+#westarted {
+    background-color: #f0ecec;
 }

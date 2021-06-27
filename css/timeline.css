@@ -1,12 +1,12 @@
-*,
+/* *,
 *::before,
 *::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+} */
 
-button {
+#timeline button {
     background: transparent;
     border: none;
     cursor: pointer;
@@ -14,17 +14,17 @@ button {
 }
 
 #timeline {
-    font: normal 16px/1.5 "Helvetica Neue", sans-serif;
-    background: #456990;
+    font-family: 'Nunito', sans-serif;
+    background: #695e91;
     color: #fff;
 }
 
 
 /* .section SECTION
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .section {
-    background: #F45B69;
+    background: #e4cecf;
     padding: 50px 0;
 }
 
@@ -45,7 +45,7 @@ button {
 
 
 /* TIMELINE
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .timeline {
     white-space: nowrap;
@@ -93,11 +93,12 @@ button {
     position: absolute;
     left: calc(100% + 7px);
     width: 280px;
-    padding: 15px;
+    padding: 10px;
     font-size: 1rem;
     white-space: normal;
     color: black;
     background: white;
+
 }
 
 .timeline ol li div::before {
@@ -140,7 +141,7 @@ button {
 
 
 /* TIMELINE ARROWS
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 .timeline .arrows {
     display: flex;
@@ -163,7 +164,7 @@ button {
 
 
 /* GENERAL MEDIA QUERIES
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
+  –––––––––––––––––––––––––––––––––––––––––––––––––– */
 @media screen and (max-width: 599px) {
 
     .timeline ol,
